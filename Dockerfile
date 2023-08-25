@@ -1,4 +1,4 @@
-FROM node:18.17.0-slim
+FROM node:18
 
 WORKDIR ~/docker/portfolio
 
