@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18.17.0-alpine
 
 WORKDIR ~/docker/portfolio
 
