@@ -1,8 +1,8 @@
-FROM node:19.9.0
+FROM node:19
 
 WORKDIR ~/docker/portfolio
 
-EXPOSE 80
+EXPOSE 8084
 
 COPY . .
 
