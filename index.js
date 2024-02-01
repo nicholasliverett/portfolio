@@ -1,24 +1,30 @@
 const http = require("http");
-const fs = require('fs').promises;
+const fs = require('fs');
 
-const host = "0.0.0.0";
-const port = 8084;
 
-const requestListener = function (req, res) {
-    fs.readFile(__dirname + "/index.html")
-        .then(contents => {
-            res.setHeader("Content-Type", "text/html");
-            res.writeHead(200);
-            res.end(contents);
-        })
-        .catch(err => {
-            res.writeHead(500);
-            res.end(err);
-            return;
+http.createServer((req, res) => {
+    console.log(`Request to ${req.url}`);
+
+    //Homepage/Resume
+    if (req.url === "/") {
+        fs.readFile('index.html', function(err, data) {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            res.end()
         });
-}
-
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-    console.log(`SERVER RUNNING on http://${host}:${port}`);
-});
+        
+    }
+    else if (req.url === "/nada") {
+        fs.readFile('nada.html', function(err, data) {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            res.end()
+        });
+        
+    }
+    else {
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end("404 error! File not found.");
+    }
+})
+.listen(8084, "localhost");
