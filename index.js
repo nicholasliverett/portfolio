@@ -27,4 +27,4 @@ http.createServer((req, res) => {
         res.end("404 error! File not found.");
     }
 })
-.listen(8084, "localhost");
+.listen(8084, "0.0.0.0");
