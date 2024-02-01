@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 8084
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "index" ]
