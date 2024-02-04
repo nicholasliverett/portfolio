@@ -3,7 +3,10 @@ const fs = require('fs');
 
 
 http.createServer((req, res) => {
-    console.log(`Request to ${req.url}`);
+    var clientip = req.headers['x-forwarded-for'] ||
+        req.socket.remoteAddress ||
+        null;
+    console.log(`Request to ${req.url} from ${clientip}`);
 
     //Homepage/Resume
     if (req.url === "/") {
